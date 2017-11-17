@@ -1,9 +1,29 @@
 <?php
-	$date =  date('Y-m-d', time());
-	echo "The value of \$date: ".$date."<br>";
-	$tar = "2017/05/24";
-	echo "The value of \$tar: ".$tar."<br>";
-	$year = array("2012", "396", "300","2000", "1100", "1089");
-	echo "The value of \$year: ";
-	print_r($year);
+    require_once('database.php');
+    require_once('users_db.php');
+    require_once('user.php');
+    $users = UsersDB::getUsers();
 ?>
+<html>
+    <head>
+        <title>Week 9 Assignmnet</title>
+        <link rel="stylesheet" href="main.css">
+    </head>
+    <body>
+        <table class="user-table">
+            <tr>
+                <th>ID</th>
+                <th>email</th>
+                <th>fname</th>
+                <th>lname</th>
+                <th>phone</th>
+                <th>birthdate</th>
+                <th>gender</th>
+                <th>password</th>
+            </tr>   
+            <?php foreach ($users as $user) : ?>
+                <?php echo $user->displayUserRow(); ?>
+            <?php endforeach; ?>        
+        </table>
+    </body>     
+</html>
